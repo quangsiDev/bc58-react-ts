@@ -26,9 +26,13 @@ export default function Ex_Todo() {
     newTodos[index].isCompleted = !newTodos[index].isCompleted;
     setTodos(newTodos);
   };
+  const handleCreateTodo = (newTodo: I_Todo) => {
+    let newTodos = [...todos, newTodo];
+    setTodos(newTodos);
+  };
   return (
     <div className="container">
-      <Form />
+      <Form handleAddTodo={handleCreateTodo} />
       <List
         handleChangeChecked={handleChangeChecked}
         listTodo={todos}

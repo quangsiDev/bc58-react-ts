@@ -1,10 +1,22 @@
 import React, { useState } from "react";
+import { I_PropsForm, I_Todo } from "./interface";
+import { customAlphabet } from "nanoid/non-secure";
 
-export default function Form() {
+export default function Form({ handleAddTodo }: I_PropsForm) {
   const [title, setTitle] = useState<string>("Làm bài tập");
 
   const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("😀 - e", e);
+    let { value } = e.target;
+    setTitle(value);
+  };
+  let handleSubmit = () => {
+    const nanoid = customAlphabet("6789", 3);
+    let todo: I_Todo = {
+      id: Number.parseInt(nanoid()), //nano id
+      title: title,
+      isCompleted: false,
+    };
+    handleAddTodo(todo);
   };
   return (
     <div className=" py-5 d-flex">
@@ -16,7 +28,10 @@ export default function Form() {
         placeholder="Write title todo"
       />
 
-      <button className="btn btn-danger">Add</button>
+      <button onClick={handleSubmit} className="btn btn-danger">
+        Add
+      </button>
     </div>
   );
 }
+// git pull

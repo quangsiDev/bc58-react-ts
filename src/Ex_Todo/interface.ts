@@ -15,3 +15,7 @@ export interface I_PropsItem {
   handleRemove: (id: number) => void;
   handleChangeChecked: (id: number) => void;
 }
+
+export interface I_PropsForm {
+  handleAddTodo: (todo: I_Todo) => void;
+}
